@@ -1,5 +1,23 @@
 <%- include('../partials/header', {title} ); %>
 
-    
+    <div>
+        <p>Cadastro de Alunos</p>
+
+        <form method="post">
+            <label for="cName">Nome Completo</label>
+            <input type="text" value="" name="lName" id="cName" required><br>
+
+            <label for="cCpf">CPF</label>
+            <input type="number" value="" name="lCpf" id="cCpf" required><br>
+
+            <label for="cDateBirthday">Data de Nascimento</label>
+            <input type="date" value="" name="lDateBirthday" id="cDateBirthday" required ><br>
+
+            <label for="cTelephone">Telefone</label>
+            <input type="number" value="" name="lTelephone" id="cTelephone" required><br>
+
+            <input type="submit" value="Cadastrar">
+        </form>
+    </div>
 
 <%- include("../partials/footer"); -%>
