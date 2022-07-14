@@ -1,0 +1,152 @@
+SISTEMA ESCOLAR 
+
+---------------------------------------
+
+_______________________________________
+Criar um sistema para cadastrar Alunos e Professores.
+_______________________________________
+
+Os dados cadastrados de ambos
+
+Alunos/Professores
+--Nome Completo
+--Cpf
+--Idade e data de Nascimento
+--Status (Ativo, Desativado)
+--Nivel Hierárquico (Aluno (1), Professor (2), Coordenador (3), Secretaria (4), Central (5))
+
+Professor
+--Que matéria da Aula [Array]
+
+Aluno
+--Aulas e/ou Curso frequentado
+
+---------------------------------------
+
+_______________________________________
+Aulas
+_______________________________________
+
+Sala de Aula
+--Quantidades de Alunos por sala
+--Alunos presentes no momento
+--Professor presente no momento
+--Numero da sala
+--Id da Sala
+--Horario
+
+---------------------------------------
+
+_______________________________________
+Estoque
+_______________________________________
+
+Materiais em Estoque
+--Nome do Material
+--Preço
+--Descrição
+--Quantidade
+--Materias (Se for livros)
+
+Materiais Comprados
+--Nome do Material
+--Preço Pago [Array]
+--Preço Faltante [Array]
+--Descrição
+--Quantidade
+--Id da Compra
+--Aluno que Comprou
+--Materias (Se for livros)
+
+---------------------------------------
+
+_______________________________________
+Diario Geral
+_______________________________________
+
+Diario
+--Aluno que veio
+--Aulas participadas [Array]
+--Aulas faltadas [Array]
+--Aulas comprovadas [Array]
+--Descrição do Modulo
+--Participação %
+--Faltas %
+
+Aula N#1
+--Aluno que veio
+--Descrição da Aula
+--Nota de Avaliação (Caso tenha algo)
+
+Nota por Modulo
+--Avaliação 1
+--Avaliação 2
+--Avaliação 3
+--Avaliação 4
+...
+
+Nota Final
+--Modulo 1
+--Modulo 2
+--Modulo 3
+--Modulo 4
+...
+
+Listar
+--Alunos por filtros (Aprovados, Reprovados, Recuperação, Materias, Modulo)
+
+Recuperação
+--Recuperar nota por outra.
+
+---------------------------------------
+
+_______________________________________
+Cursos
+_______________________________________
+
+Cadastrar
+--Professores que podem da Aula
+--Tempo de Duração
+--Sala
+--Horario
+--Dias que acontecerá
+--Status (Ativo,Desativado,)
+
+Listar
+--Todos Cursos
+--Cursos em aula
+--Professores dando aula
+--Alunos em aulas
+
+Excluir/Alterar
+--Excluir cursos onde não tenha ninguem cadastrado, se houver avisar o aluno antes.
+--Alterar Professor de curso.
+--Alterar Aluno de curso.
+--Alterar horario do curso.
+--Alterar sala que acontecerá o curso
+
+---------------------------------------
+
+_______________________________________
+Arquivos
+_______________________________________
+
+--Compartilhamento de Arquivos por (Sala, público).
+--Entrega de Trabalhos
+
+---------------------------------------
+
+_______________________________________
+Blog
+_______________________________________
+
+Post
+--Comentarios
+--Fotos
+--Like
+--Publicar
+--Citação de Outros Usuario
+
+Apagar/Editar
+--O propio Usuario apagar o seu post, ou ser Alguém com cargo.
+
