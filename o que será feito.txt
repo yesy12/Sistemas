@@ -15,6 +15,9 @@ Alunos/Professores
 --Status (Ativo, Desativado)
 --Telefone
 --Nivel Hierárquico (Aluno (1), Professor (2), Coordenador (3), Secretaria (4), Central (5))
+--senha
+--data criada
+--data atualizada
 
 Professor
 --Que matéria da Aula [Array]
