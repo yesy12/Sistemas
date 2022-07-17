@@ -31,7 +31,8 @@ function validationLength(field, min, max=undefined){
     }
 }
 
-function validationDate(field){
+
+function validationDate(field,returnAge=false){
     const date = field.split("-");
     const year = new Date().getFullYear();
     const month = new Date().getMonth() + 1;
@@ -51,8 +52,15 @@ function validationDate(field){
         }
         
     }
+
+    if(returnAge){
+        return year - date[0]
+    }
     return true;
 }
+
+
+
 
 module.exports = {
     validationText, validationNumber, validationLength, validationDate

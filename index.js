@@ -11,7 +11,9 @@ app.set("view engine","ejs")
 require("./db");
 const {validationText, validationNumber,validationLength, validationDate} = require("./validation_inputs")
 
-const UserSchema = require("./models/User")
+const UserSchema = require("./models/User");
+const { default: mongoose } = require("mongoose");
+const { exists } = require("./models/User");
 
 //Routes
 app.get("/user",(req,res)=>{
@@ -33,8 +35,7 @@ app.get("/user/registration",(req,res)=>{
 })
 
 app.post("/user/registration",async(req,res)=>{
-    const {lName,lLastName, lCpf, lDateBirthday, lTelephone} = req.body;
-
+    const {lName,lLastName, lCpf, lDateBirthday, lTelephone} = req.body
     errors = [];
 
     //Name
@@ -56,30 +57,45 @@ app.post("/user/registration",async(req,res)=>{
         })
     }
 
-
     if(!validationNumber(lDateBirthday) || !validationLength(lDateBirthday,10,10) || !validationDate(lDateBirthday)){
         errors.push({
             "text": "Date Birthday Invalid"
         })
     }
         
-
     if(!validationNumber(lTelephone)){
         errors.push({
             "text": "Telephone Invalid"
         })
     }
 
+    const lAge = validationDate(lDateBirthday,true)
+
 
     if(errors.length > 0){
         res.send({errors})
     }
     else{
-        res.send(req.body)
-    }
+        const result = await UserSchema.find({
+            "cpf": lCpf}, {"cpf": 1}, {limit : 1})
 
-    
-    
+        if(result.length == 0){
+            await UserSchema.create({
+                "name" : lName,
+                "lastName" : lLastName,
+                "cpf": lCpf,
+                "age" : lAge,
+                "dateBirthday": lDateBirthday
+            })
+            .then(()=>{
+                res.redirect("/user/login")
+            })
+        }else{
+            res.send({
+                "text": "User is exists"
+            })
+        }
+    }    
 })
 
 app.listen(port,()=>{
