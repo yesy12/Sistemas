@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.set("view engine","ejs")
 
 require("./db");
-
+const {validationText, validationNumber,validationLength, validationDate} = require("./validation_inputs")
 
 const UserSchema = require("./models/User")
 
@@ -36,56 +36,38 @@ app.post("/user/registration",async(req,res)=>{
     const {lName,lLastName, lCpf, lDateBirthday, lTelephone} = req.body;
 
     errors = [];
-    const regex_number = new RegExp("[0-9]")
-    const regex_text = new RegExp("[A-z]")
 
     //Name
-    if(!lName || typeof lName == undefined || lName == null || regex_number.test(lName)){
+    
+    if(!validationText(lName)){
         errors.push({
-            text : "Name Invalid"
-        });
+            "text": "Name Invalid"
+        })
     }
-
-    //LastName
-    if(!lLastName || typeof lLastName == undefined || lLastName == null || regex_number.test(lLastName)){
+    if(!validationText(lLastName)){
         errors.push({
-            text : "Last Name Invalid"
-        });
+            "text": "Last Name Invalid"
+        })
     }
-
-    //Cpf
-    if(!lCpf || typeof lCpf == undefined || lCpf == null || regex_text.test(lCpf)){
+    
+    if(!validationNumber(lCpf) || !validationLength(lCpf,11,11)){
         errors.push({
-            text : "CPF Invalid"
-        });
-    }
-    if(lCpf.length > 11 || lCpf.length < 11){
-        errors.push({
-            text : "CPF is wrong in the length"
+            "text": "CPF Invalid"
         })
     }
 
 
-    //lDateBirthday
-    const date = lDateBirthday.split("-")
-    console.log(date)
-    if(!lDateBirthday || typeof lDateBirthday == undefined || lDateBirthday == null || regex_text.test(lDateBirthday)){
+    if(!validationNumber(lDateBirthday) || !validationLength(lDateBirthday,10,10) || !validationDate(lDateBirthday)){
         errors.push({
-            text : "Date Birthday Invalid"
-        });
-    }
-
-    if(lDateBirthday.length > 10 || lDateBirthday.length < 10 || date[0] > new Date().getFullYear() || date[1] > (new Date().getMonth()+1) ||date[2] > (new Date().getDate()+1)){
-        errors.push({
-            text : "Date Birthday wrong"
+            "text": "Date Birthday Invalid"
         })
     }
+        
 
-    //lTelephone
-    if(!lTelephone || typeof lTelephone == undefined || lTelephone == null || regex_text.test(lTelephone)){
+    if(!validationNumber(lTelephone)){
         errors.push({
-            text : "Telephone Invalid"
-        });
+            "text": "Telephone Invalid"
+        })
     }
 
 
