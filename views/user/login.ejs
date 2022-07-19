@@ -1,4 +1,19 @@
 <%- include('../partials/header', {title} ); %>
 
+<h1>Bem vindo ao Login</h1>
+
+<form method="post">
+
+    <label for="cEmail">E-mail </label>
+    <input type="email" name="lEmail" id="cEmail" value="" required placeholder="Digite seu email" autofocus><br>
+
+    <label for="cPassword">Senha</label>
+    <input type="password" name="lPassword" id="cPassword" value="" required placeholder="Digite sua senha"><br>
+
+    <input type="submit" value="Entrar">
+
+
+</form>
+
 
 <%- include("../partials/footer"); -%>

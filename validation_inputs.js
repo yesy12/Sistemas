@@ -1,5 +1,7 @@
 const regex_number = new RegExp("[0-9]");
 const regex_text = new RegExp("[A-z]");
+const regex_email_is = new RegExp("@");
+const regex_email_validation = new RegExp(".+@.+")
 
 function validationText(field){
     if(!field || typeof field  == undefined || field == null || regex_number.test(field)){
@@ -59,11 +61,28 @@ function validationDate(field,returnAge=false){
     return true;
 }
 
+function validationEmail(field){
+    console.log(field)
+    if(!field || typeof field  == undefined || field == null || !regex_email_is.test(field)){
+        return false;
+    }
+    if(regex_email_validation.test(field)){
+        return true;
+    }
+}
 
+function validationPassword(field){
+    if(!field || typeof field  == undefined || field == null){
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 
 
 module.exports = {
-    validationText, validationNumber, validationLength, validationDate
+    validationText, validationNumber, validationLength, validationDate, validationEmail, validationPassword
 }
 
 

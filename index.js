@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.set("view engine","ejs")
 
 require("./db");
-const {validationText, validationNumber,validationLength, validationDate} = require("./validation_inputs")
+const {validationText, validationNumber,validationLength, validationDate, validationEmail, validationPassword} = require("./validation_inputs")
 
 const UserSchema = require("./models/User");
 const { default: mongoose } = require("mongoose");
@@ -35,11 +35,10 @@ app.get("/user/registration",(req,res)=>{
 })
 
 app.post("/user/registration",async(req,res)=>{
-    const {lName,lLastName, lCpf, lDateBirthday, lTelephone} = req.body
+    const {lName,lLastName, lCpf, lDateBirthday, lTelephone, lEmail, lPassword, lRepeatPassword} = req.body
     errors = [];
 
-    //Name
-    
+    //Name and Last Name
     if(!validationText(lName)){
         errors.push({
             "text": "Name Invalid"
@@ -51,24 +50,90 @@ app.post("/user/registration",async(req,res)=>{
         })
     }
     
+    //Cpf
     if(!validationNumber(lCpf) || !validationLength(lCpf,11,11)){
         errors.push({
             "text": "CPF Invalid"
         })
     }
 
+    //Date Birthday
     if(!validationNumber(lDateBirthday) || !validationLength(lDateBirthday,10,10) || !validationDate(lDateBirthday)){
         errors.push({
             "text": "Date Birthday Invalid"
         })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
+
         
+    //Telephone
     if(!validationNumber(lTelephone)){
         errors.push({
             "text": "Telephone Invalid"
         })
     }
 
+    // Email
+    if(!validationEmail(lEmail)){
+        errors.push({
+            "text": "Email Invalid"
+        })
+    }
+
+    // Password and Repeat Password
+    if(!validationPassword(lPassword)){
+        errors.push({
+            "text" : "Password Invalid"
+        })
+    }
+
+    if(!validationPassword(lRepeatPassword)){
+        errors.push({
+            "text" : "Repeat Password Invalid"
+        })
+    }
+
+    if(lPassword != lRepeatPassword){
+        errors.push({
+            "text" : "Password e Repeat Password Invalid"
+        })
+    }
+
+    // /Age
     const lAge = validationDate(lDateBirthday,true)
 
 
@@ -85,7 +150,9 @@ app.post("/user/registration",async(req,res)=>{
                 "lastName" : lLastName,
                 "cpf": lCpf,
                 "age" : lAge,
-                "dateBirthday": lDateBirthday
+                "dateBirthday": lDateBirthday,
+                "email" : lEmaill,
+                "password" : lPassword
             })
             .then(()=>{
                 res.redirect("/user/login")
