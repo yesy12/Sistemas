@@ -6,7 +6,7 @@
   "author": "Alison Vieira",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
     "body-parser": "^1.20.0",

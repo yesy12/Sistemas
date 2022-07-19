@@ -62,7 +62,6 @@ function validationDate(field,returnAge=false){
 }
 
 function validationEmail(field){
-    console.log(field)
     if(!field || typeof field  == undefined || field == null || !regex_email_is.test(field)){
         return false;
     }
